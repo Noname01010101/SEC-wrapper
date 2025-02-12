@@ -1,0 +1,15 @@
+{
+    "symbols": [
+        "AAPL",
+        "MSFT",
+        "NVDA"
+    ],
+    "errorSymbol": "INTENTIONAL ERROR",
+    "cikCodes": [
+        "0000320193",
+        "0000789019",
+        "0001652044"
+    ],
+    "APIUrlTest": "https://data.sec.gov/api/xbrl/companyconcept/CIK0000320193/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json",
+    "revenueConcept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "sec_wrapper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "vitest": "^3.0.5"
+  },
+  "dependencies": {
+    "yahoo-finance2": "^2.13.3"
+  }
+}
