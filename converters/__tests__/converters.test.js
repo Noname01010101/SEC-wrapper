@@ -1,7 +1,7 @@
 import * as vitest from "vitest";
-const CikCodeConverter = require('../converters/cikCodeConverter');
-const URLConverter = require('../converters/urlConverter');
-const concepts = require('../concepts/standardConcepts.json').income;
+const CikCodeConverter = require('../cikCodeConverter');
+const URLConverter = require('../urlConverter');
+const concepts = require('../../concepts/standardConcepts.json').income;
 
 vitest.describe('convertions test', () => {
     vitest.it('should return the actual cik code corresponding to the symbol', async () => {

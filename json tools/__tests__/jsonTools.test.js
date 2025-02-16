@@ -1,5 +1,5 @@
 import {describe, it, expect} from "vitest";
-const sectionInit = require('../json tools/nestedObjectsTools');
+const sectionInit = require('../nestedObjectsTools');
 
 const exampleObj = {
     section1: {

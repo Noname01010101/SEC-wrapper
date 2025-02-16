@@ -1,6 +1,6 @@
 import * as vitest from "vitest";
-const APIResponseAnnualProcessor = require('../processors/APIResponseAnnualProcessor');
-const testInputs = require('./testInputs.json');
+const APIResponseAnnualProcessor = require('../APIResponseAnnualProcessor');
+const testInputs = require('../../tests/testInputs.json');
 
 vitest.describe("processors test", () => {
     vitest.it('should return arrays with valid values', async () => {

@@ -1,6 +1,6 @@
 import {describe, it, expect, test} from "vitest";
-const testInputs = require('./testInputs.json');
-const APIRateLimitedFetch = require('../SEC requirements/rateLimit').APIRateLimitedFetch;
+const testInputs = require('../../tests/testInputs.json');
+const APIRateLimitedFetch = require('../rateLimit').APIRateLimitedFetch;
 
 function isResponseValid(res){
     if (!res.ok || res.status != 200){

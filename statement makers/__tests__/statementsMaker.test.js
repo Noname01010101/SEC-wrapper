@@ -1,7 +1,6 @@
 import {describe, it, expect} from "vitest";
-const IncomeStatementGetter = require('../statement makers/statementMaker');
-const StatementsMaker = require('../statement makers/statementMaker');
-const testInputs = require('./testInputs.json');
+const StatementsMaker = require('../statementMaker');
+const testInputs = require('../../tests/testInputs.json');
 const yahooFinance = require('yahoo-finance2').default;
 
 async function getLatestQuartersRevenueValuesFromYahoo(){
