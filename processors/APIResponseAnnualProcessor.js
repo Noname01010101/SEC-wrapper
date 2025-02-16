@@ -26,8 +26,12 @@ class APIResponseAnnualProcessor extends APIResponseProcessorSuper {
         throw new Error('specific year\'s data not found')
     }
 
-    static async getAvailableAnnualYears(symbol){
+    static async getAvailableAnnualYearsWithSymbol(symbol){
         const cikCode = await CikCodeCoverter.getSymbolCikCodeWithoutCIKKeyword(symbol);
+        return await APIResponseAnnualProcessor.getAvailableAnnualYears(cikCode);
+    }
+
+    static async getAvailableAnnualYears(cikCode){
         const submissionsUrl = URLConverter.getSubmissionsUrl(cikCode);
         const response = await fetch(submissionsUrl);
 

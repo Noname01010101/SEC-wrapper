@@ -1,5 +1,5 @@
 {
-    "incomeStatement": {
+    "income": {
         "revenue" : "RevenueFromContractWithCustomerExcludingAssessedTax",
         "grossMargin" : "GrossProfit",
         "totalOperatingExpenses": "OperatingExpenses",

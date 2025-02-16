@@ -1,6 +1,6 @@
 import {describe, it, expect} from "vitest";
-const IncomeStatementGetter = require('../statement makers/incomeStatementGetter');
-const StatementsmakerSuper = require('../statement makers/super classes/statementMakerSuper');
+const IncomeStatementGetter = require('../statement makers/statementMaker');
+const StatementsMaker = require('../statement makers/statementMaker');
 const testInputs = require('./testInputs.json');
 const yahooFinance = require('yahoo-finance2').default;
 
@@ -28,7 +28,7 @@ async function getLatestThreeAnnualRevenuesFromYahoo(){
     const startYear = new Date(`${(new Date()).getFullYear() - 4}-01-01`);
     const yahooStatements = await yahooFinance.fundamentalsTimeSeries(
         'AAPL',
-        {period1:startYear, module: 'financials', type: "quarterly"}
+        {period1:startYear, module: 'financials', type: "annual"}
     );
     const yahooRevenues = [];
     // @ts-ignore
@@ -44,29 +44,29 @@ async function getLatestThreeAnnualRevenuesFromYahoo(){
 describe('statements maker super test', () => {
     it('should return values for latest quarters equal to the one in yahoo finance', async ()=> {
         const yahooRevenues = await getLatestQuartersRevenueValuesFromYahoo();
-        const superMaker = new StatementsmakerSuper();
-        const latestQuarterValues = await superMaker.getLatestQuarterStatements('AAPL', {revenue: testInputs.revenueConcept});
+        const superMaker = new StatementsMaker();
+        const latestQuarterValues = await superMaker.getStatement('AAPL', {financialStatement: 'income', reportingPeriod: 'latestQuarters'});
 
-        for (let i = 1; i < 5; i ++){
-            expect(latestQuarterValues[`Q${i}`].revenue).toBe(yahooRevenues[i - 1]);
+        for (let i = 0; i < 4; i ++){
+            expect(latestQuarterValues[i].revenue).toBe(yahooRevenues[i]);
         }
     })
 
     it('should return the latest TTM value equal to the one in yahoo finance', async ()=> {
         const yahooTTMRevenue = await getTTMRevenueValueFromYahoo();
-        const superMaker = new StatementsmakerSuper();
-        const superTTMRevenue = await superMaker.getTTMStatement('AAPL', {revenue: testInputs.revenueConcept});
+        const superMaker = new StatementsMaker();
+        const superTTMRevenue = await superMaker.getStatement('AAPL', {financialStatement: "income", reportingPeriod: "ttm"});
 
-        expect(superTTMRevenue.revenue).toBe(yahooTTMRevenue);
+        expect(superTTMRevenue[0].revenue).toBe(yahooTTMRevenue);
     })
 
     it('should return at least the three latest annual reports data', async () => {
         const yahooRevenues = await getLatestThreeAnnualRevenuesFromYahoo();
-        const superMaker = new StatementsmakerSuper();
-        const superRevenues = await superMaker.getHistoricalAnnualStatements('AAPL', {revenue: testInputs.revenueConcept});
+        const superMaker = new StatementsMaker();
+        const superRevenues = await superMaker.getStatement('AAPL', {financialStatement: "income", reportingPeriod: "historicalAnnual"});
 
         let yahooIndex = 0;
-        for (let i = superRevenues.length - 4; i < superRevenues.length; i++){
+        for (let i = superRevenues.length - 3; i < superRevenues.length; i++){
             expect(superRevenues[i].revenue).toBe(yahooRevenues[yahooIndex]);
             yahooIndex++;
         }

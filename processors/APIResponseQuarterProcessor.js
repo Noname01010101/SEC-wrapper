@@ -2,9 +2,9 @@ const APIResponseProcessorSuper = require('./super classes/APIResponseProcessorS
 
 class APIResponseQuarterProcessor extends APIResponseProcessorSuper {
 
-    static getLatestQuarterValues(resJSON){
+    static getLatestQuarterValues(conceptBlocks){
         let quarterData = [];
-        const resBlocks = this.getAllBlocks(resJSON);
+        const resBlocks = this.getAllBlocks(conceptBlocks);
         for (let i = resBlocks.length - 1; i > 0; i--){
             const block = resBlocks[i];
             const isQuarterExtractable = this.canQuarterBeExtractedFromBlock(block);
