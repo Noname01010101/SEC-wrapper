@@ -83,7 +83,11 @@ class APIResponseAnnualProcessor extends APIResponseProcessorSuper {
     }
 
     static #getKeyInformationFromBlock(block){
-        return {date: block['frame'].split("Y")[1], value: +block['val']};
+        let date = block['frame'].split("Y")[1];
+        if (date.length >= 5){
+            date = date.substring(0, 4);
+        }
+        return {date: date, value: +block['val']};
     }
 }
 

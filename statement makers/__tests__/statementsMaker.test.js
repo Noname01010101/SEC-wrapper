@@ -40,7 +40,21 @@ async function getLatestThreeAnnualRevenuesFromYahoo(){
     return yahooRevenues;
 }
 
-describe('statements maker super test', () => {
+async function getLatestQuartersAssetsValuesFromYahoo(){
+    const startYear = new Date(`${(new Date()).getFullYear() - 1}-01-01`);
+    const yahooStatements = await yahooFinance.fundamentalsTimeSeries(
+        'AAPL',
+        {period1:startYear, module: 'balance-sheet', type: "quarterly"}
+    );
+    const yahooAssets = [];
+    // @ts-ignore
+    for (const statement of yahooStatements){
+        yahooAssets.push(statement.totalAssets);
+    }
+    return yahooAssets;
+}
+
+describe('statements maker income test', () => {
     it('should return values for latest quarters equal to the one in yahoo finance', async ()=> {
         const yahooRevenues = await getLatestQuartersRevenueValuesFromYahoo();
         const superMaker = new StatementsMaker();
@@ -70,4 +84,27 @@ describe('statements maker super test', () => {
             yahooIndex++;
         }
     }, 10000)
+})
+
+describe('statements maker bs test', () => {
+    it('should return values for latest quarters equal to the one in yahoo finance', async ()=> {
+        const yahooAssets = await getLatestQuartersAssetsValuesFromYahoo();
+        const superMaker = new StatementsMaker();
+        const latestQuarterValues = await superMaker.getStatement('AAPL', {financialStatement: 'balance', reportingPeriod: 'latestQuarters'});
+
+        for (let i = 0; i < 4; i ++){
+            expect(latestQuarterValues[i].totalAssets).toBe(yahooAssets[i]);
+        }
+    })
+
+    it('should return at least the three latest annual reports data', async () => {
+        const superMaker = new StatementsMaker();
+        const superAssets = await superMaker.getStatement('AAPL', {financialStatement: "balance", reportingPeriod: "historicalAnnual"});
+
+        let yahooIndex = 0;
+        for (let i = superAssets.length - 3; i < superAssets.length; i++){
+            expect(typeof superAssets[i].totalAssets).toBe('number');
+            yahooIndex++;
+        }
+    }, 15000)
 })

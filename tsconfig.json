@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": ["dom", "ESNext"],
+        "module": "CommonJS",
+        "resolveJsonModule": true
+    },
+    "exclude": [
+        "/node_modules",
+        "tsconfig.json"
+    ]
+}
