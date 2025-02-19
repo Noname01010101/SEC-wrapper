@@ -108,3 +108,16 @@ describe('statements maker bs test', () => {
         }
     }, 15000)
 })
+
+describe('statement maker errors test', ()=>{
+    it('should return an error', async ()=>{
+        const superMaker = new StatementsMaker();
+        let gotError = false;
+        try{
+            const latestQuarterValues = await superMaker.getStatement('INTENTIONAL ERROR', {financialStatement:     'balance', reportingPeriod: 'latestQuarters'});
+        } catch(err){
+            gotError = true;
+        }
+        expect(gotError).toBe(true);
+    })
+})

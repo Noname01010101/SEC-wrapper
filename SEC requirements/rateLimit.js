@@ -37,12 +37,16 @@ async function APIRateLimitedFetch(url, options) {
 
     if (apiCalls < MAX_CALLS) {
         apiCalls++;
-        return fetch(url, options);
+        const res = await fetch(url, options);
+        if (res.status == 429){
+            await wait(10000);
+            return await APIRateLimitedFetch(url, options);
+        }
+        return res;
     }
 
     // Wait until the time window resets
     const timeToWait = TIME_FRAME - (currentTime - startTime);
-    console.log(`API limit reached. Waiting for ${timeToWait / 1000} seconds...`);
     await wait(timeToWait);
     return await APIRateLimitedFetch(url, options);
 }
