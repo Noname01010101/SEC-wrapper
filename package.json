@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "vitest"
+    "test": "tsc & vitest"
   },
   "keywords": [],
   "author": "",
@@ -11,9 +11,6 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^22.13.1",
-    "vitest": "^3.0.5"
-  },
-  "dependencies": {
-    "yahoo-finance2": "^2.13.3"
+    "vitest": "^3.0.7"
   }
 }
