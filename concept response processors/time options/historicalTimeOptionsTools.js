@@ -1,10 +1,11 @@
 "use strict";
 class TimeOptionsTools {
     static getAllConsecutiveYearsFromTimeOptions(timeOptions) {
+        this.validateTimeOptions(timeOptions);
         const startYear = +timeOptions.startYear;
-        const endYear = +timeOptions.startYear;
+        const endYear = +timeOptions.endYear;
         let years = [];
-        const offset = startYear - endYear;
+        const offset = endYear - startYear;
         for (let i = +timeOptions.startYear; i <= startYear + offset; i++) {
             years.push(`${i}`);
         }

@@ -11,18 +11,41 @@ class CYHistoricalQuarterGetter {
         const yearsToGet = HistoricalTimeOptionsTools.getAllConsecutiveYearsFromTimeOptions(timeOptions);
         let historicalValues = [];
         for (const year of yearsToGet){
-           historicalValues = historicalValues.concat(this.getAllQuartersFromYear(conceptResponse, year));
+            try{
+                historicalValues = historicalValues.concat(this.getAllQuartersFromYear(conceptResponse, year));
+            } catch(err){
+                break;
+            }
         }
         return historicalValues;
     }
 
     static getAllQuartersFromYear(conceptResponse,year){
         let quartersData = [];
-        quartersData.push(CYQuarterGetter.getSpecificQuarterData(conceptResponse, year, 1));
-        quartersData.push(CYQuarterGetter.getSpecificQuarterData(conceptResponse, year, 2));
-        quartersData.push(CYQuarterGetter.getSpecificQuarterData(conceptResponse, year, 3));
-        quartersData.push(CYQuarterGetter.getSpecificQuarterData(conceptResponse, year, 4));
+        for (let i = 1; i < 5; i++){
+            try{
+                quartersData.push(CYQuarterGetter.getSpecificQuarterData(conceptResponse, year, i));
+            } catch(err){
+                break;
+            }
+        }
+
+        this.#validateQuarterData(quartersData);
         return quartersData;
+    }
+
+    static #validateQuarterData(quartersData){
+        if (quartersData.length == 0){
+            throw new Error('no quarter data in the array')
+        }
+
+        let previousQuarterNumber = 0;
+        for (const value of quartersData){
+            if(+value.quarter != previousQuarterNumber + 1){
+                throw new Error('multiple quarters or out of sequence data error');
+            }
+            previousQuarterNumber++;
+        }
     }
 }
 

@@ -3,7 +3,7 @@ import BlockCalendarYearAnalyzer = require('../block analyzis/blockCYAnalyzer');
 import CYHiddenQuarterHandler = require('./response fixes/CYHiddenQuarterHandler');
 
 class CYQuarterGetter {
-    static getSpecificQuarterData(conceptResponse, year: string, quarter: 1 | 2 | 3 | 4){
+    static getSpecificQuarterData(conceptResponse, year: string, quarter: number){
         const blocks = ConceptResponseBlockConverter.getExtractedBlocksFromConceptResponse(conceptResponse);
         for (let i = 0; i < blocks.length; i++){
             const block = blocks[i];
@@ -12,8 +12,11 @@ class CYQuarterGetter {
             if (isBlockTheTarget){
                 return this.#getKeyInformationFromBlock(block);
             } else if (doesBlockContainHiddenQuarter){
-                const remadeBlock = CYHiddenQuarterHandler.getTheoricalHiddenQuarterBlock(conceptResponse, i, year);
-                return this.#getKeyInformationFromBlock(remadeBlock);
+                const theoricalQuarter = CYHiddenQuarterHandler.getHiddenQuarterSupposedQNumber(conceptResponse, i);
+                if (+theoricalQuarter == quarter){
+                    const remadeBlock = CYHiddenQuarterHandler.getTheoricalHiddenQuarterBlock(conceptResponse, i, year);
+                    return this.#getKeyInformationFromBlock(remadeBlock);
+                }
             }
         }
         throw new Error('target not found');

@@ -6,23 +6,27 @@ import nestedObjectsTools = require('../json tools/nestedObjectsTools')
 
 class QuarterStatementMaker{
     static getHistoricalQuarterStatements(companyFactsResponse, concepts, timeOptions: GeneralTimeOptions){
+        timeOptions = TimeOptionsTools.getTimeOptionsWithAddedDefaultValuesIfUndefined(timeOptions);
         concepts = nestedObjectsTools.getObjectWithoutSections(concepts);
         let historicalQuarters = [];
         const yearsToGet = TimeOptionsTools.getAllConsecutiveYearsFromTimeOptions(timeOptions);
+
+        let errorMessage = "";
         for (const year of yearsToGet){
             try{
                 historicalQuarters = historicalQuarters.concat(this.getAllAvailableQuartersFromYear(companyFactsResponse, concepts, year));
             } catch (err){
+                errorMessage = err.message;
                 break;
             }
         }
-        this.#validateHistoricalQuarterData(historicalQuarters);
+        this.#validateHistoricalQuarterData(historicalQuarters, errorMessage);
         return historicalQuarters;
     }
 
-    static #validateHistoricalQuarterData(data){
+    static #validateHistoricalQuarterData(data, errorMessage){
         if (data.length == 0){
-            throw new Error('no historical statement found - array length is 0');
+            throw new Error(`no historical statement found - empty data -> error: ${errorMessage}`);
         }
     }
 

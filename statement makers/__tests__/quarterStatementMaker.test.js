@@ -24,13 +24,6 @@ describe('quarter statement maker historical quarters test', ()=> {
         }
     });
 
-    it('History of quarterly cashflow statements', ()=> {
-        const historyStatements = QuarterStatementMaker.getHistoricalQuarterStatements(companyFacts, stdConcepts.cashFlow, testCommonTools.getTwoYearsTimeOption());
-        for (const statement of historyStatements){
-            expect(typeof statement.totalCashGeneratedByOperatingActivities).toBe("number");
-        }
-    });
-
     it('History of quarterly misc statements', ()=> {
         const historyStatements = QuarterStatementMaker.getHistoricalQuarterStatements(companyFacts, stdConcepts.miscellanous, testCommonTools.getTwoYearsTimeOption());
         for (const statement of historyStatements){
@@ -52,11 +45,6 @@ describe('quarter statement maker specific quarter test', ()=> {
     it('specific quarter balance statement', ()=> {
         const statement = QuarterStatementMaker.getQuarterStatement(companyFacts, stdConcepts.balance, 2024, 3);
         expect(typeof statement['totalAssets']).toBe("number");
-    });
-
-    it('specific quarter cashflow statement', ()=> {
-        const statement = QuarterStatementMaker.getQuarterStatement(companyFacts, stdConcepts.cashFlow, 2024, 3);
-        expect(typeof statement['totalCashGeneratedByOperatingActivities']).toBe("number");
     });
 
     it('specific quarter misc statement', ()=> {

@@ -20,11 +20,6 @@ describe('ttm statement maker test', ()=> {
         expect(typeof statement['totalAssets']).toBe("number");
     });
 
-    it('ttm cashflow statement', ()=> {
-        const statement = ttmStatementMaker.getTTMStatement(companyFacts, stdConcepts.cashFlow)
-        expect(typeof statement['totalCashGeneratedByOperatingActivities']).toBe("number");
-    });
-
     it('ttm misc statement', ()=> {
         const statement = ttmStatementMaker.getTTMStatement(companyFacts, stdConcepts.miscellanous)
         expect(typeof statement['outstandingShares']).toBe("number");

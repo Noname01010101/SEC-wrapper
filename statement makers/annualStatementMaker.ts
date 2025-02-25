@@ -7,6 +7,7 @@ import nestedObjectsTools = require('../json tools/nestedObjectsTools');
 
 class AnnualStatementMaker {
     static getHistoricalAnnualStatement(companyFactsResponse, concepts, timeOptions: GeneralTimeOptions){
+        timeOptions = TimeOptionsTools.getTimeOptionsWithAddedDefaultValuesIfUndefined(timeOptions);
         concepts = nestedObjectsTools.getObjectWithoutSections(concepts);
         let historicalAnnual = [];
         const yearsToGet = TimeOptionsTools.getAllConsecutiveYearsFromTimeOptions(timeOptions);
@@ -18,11 +19,11 @@ class AnnualStatementMaker {
                 break;
             }
         }
-        this.#validateAnnualQuarterData(historicalAnnual);
+        this.#validateAnnualData(historicalAnnual);
         return historicalAnnual;
     }
 
-    static #validateAnnualQuarterData(data){
+    static #validateAnnualData(data){
         if (data.length == 0){
             throw new Error('no historical statement found - array length is 0');
         }

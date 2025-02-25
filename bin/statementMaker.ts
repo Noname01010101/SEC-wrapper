@@ -23,14 +23,14 @@ class StatementMaker {
         return resJSON;
     };
 
-    static #getConceptFromType(statementType: statementType){
+    static #getConceptFromType(statementType: statementType | "cashFlow"){
         return StandardConcepts[statementType];
     }
     static #getProcessedConcepts(concepts){
         return nestedObjectsTools.getObjectWithoutSections(concepts);
     }
 
-    static async getAnnualSpecificYear(symbol: string, year: string, statementType: statementType){
+    static async getAnnualSpecificYear(symbol: string, year: string, statementType: statementType | "cashFlow"){
         const generalResponse = await this.#getGeneralResponse(symbol);
         const rawConcepts = this.#getConceptFromType(statementType);
         const processedConcepts = this.#getProcessedConcepts(rawConcepts);
@@ -38,7 +38,7 @@ class StatementMaker {
         const statement = AnnualStatementMaker.getAnnualStatement(generalResponse, processedConcepts, year);
         return statement;
     } 
-    static async getHistoricalAnnual(symbol: string, statementType: statementType, timeOptions: GeneralTimeOptions){
+    static async getHistoricalAnnual(symbol: string, statementType: statementType | "cashFlow", timeOptions: GeneralTimeOptions){
         const generalResponse = await this.#getGeneralResponse(symbol);
         const rawConcepts = this.#getConceptFromType(statementType);
         const processedConcepts = this.#getProcessedConcepts(rawConcepts);
@@ -74,7 +74,7 @@ class StatementMaker {
         return statement;
     }
 
-    static async getTTMStatement(symbol: string, statementType: statementType){
+    static async getTTMStatement(symbol: string, statementType: statementType): Promise<any>{
         const generalResponse = await this.#getGeneralResponse(symbol);
         const rawConcepts = this.#getConceptFromType(statementType);
         const processedConcepts = this.#getProcessedConcepts(rawConcepts);

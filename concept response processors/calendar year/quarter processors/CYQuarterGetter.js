@@ -13,8 +13,11 @@ class CYQuarterGetter {
                 return this.#getKeyInformationFromBlock(block);
             }
             else if (doesBlockContainHiddenQuarter) {
-                const remadeBlock = CYHiddenQuarterHandler.getTheoricalHiddenQuarterBlock(conceptResponse, i, year);
-                return this.#getKeyInformationFromBlock(remadeBlock);
+                const theoricalQuarter = CYHiddenQuarterHandler.getHiddenQuarterSupposedQNumber(conceptResponse, i);
+                if (+theoricalQuarter == quarter) {
+                    const remadeBlock = CYHiddenQuarterHandler.getTheoricalHiddenQuarterBlock(conceptResponse, i, year);
+                    return this.#getKeyInformationFromBlock(remadeBlock);
+                }
             }
         }
         throw new Error('target not found');
