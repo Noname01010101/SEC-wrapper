@@ -1,41 +1,40 @@
-import URLConverter = require('../converters/urlConverter');
-import cikCodeConverter = require('../converters/cikCodeConverter');
-import requestLimit = require('../SEC requirements/rateLimit');
-
+"use strict";
+const URLConverter = require("../converters/urlConverter");
+const cikCodeConverter = require("../converters/cikCodeConverter");
+const requestLimit = require("../SEC requirements/rateLimit");
 class SymbolsGetter {
-    static async getAllSymbolsInSEC(): Promise<string[]>{
+    static async getAllSymbolsInSEC() {
         const tickersUrl = URLConverter.getCompanyTickersURL();
         const res = await requestLimit.APIRateLimitedFetch(tickersUrl);
-        if (res.ok){
+        if (res.ok) {
             return await this.#getSymbolsFromResponse(res);
-        } else {
+        }
+        else {
             throw new Error('response trying to get all available symbols is not ok');
         }
     }
-
-    static async #getSymbolsFromResponse(response): Promise<string[]>{
+    static async #getSymbolsFromResponse(response) {
         const json = await response.json();
         let symbols = [];
-        for (const key in json){
+        for (const key in json) {
             symbols.push(json[key]["ticker"]);
         }
         return symbols;
     }
-
-    static async getAllCikCodesInSEC(): Promise<string[]>{
+    static async getAllCikCodesInSEC() {
         const tickersUrl = URLConverter.getCompanyTickersURL();
         const res = await requestLimit.APIRateLimitedFetch(tickersUrl);
-        if (res.ok){
+        if (res.ok) {
             return await this.#getCikCodesFromResponse(res);
-        } else {
+        }
+        else {
             throw new Error('response trying to get all available cik codes is not ok');
         }
     }
-
-    static async #getCikCodesFromResponse(response): Promise<string[]>{
+    static async #getCikCodesFromResponse(response) {
         const json = await response.json();
         let cik = [];
-        for (const key in json){
+        for (const key in json) {
             const rawCik = json[key]["cik_str"];
             const fullCik = cikCodeConverter.normalizeCikCode(rawCik);
             cik.push(fullCik);
@@ -43,5 +42,4 @@ class SymbolsGetter {
         return cik;
     }
 }
-
-export = SymbolsGetter;
+module.exports = SymbolsGetter;
