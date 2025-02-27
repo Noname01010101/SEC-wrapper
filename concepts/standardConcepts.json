@@ -1,7 +1,6 @@
 {
     "income": {
         "revenue" : "RevenueFromContractWithCustomerExcludingAssessedTax",
-        "grossMargin" : "GrossProfit",
         "totalOperatingExpenses": "OperatingExpenses",
         "operatingIncome": "OperatingIncomeLoss",
         "netIncome": "NetIncomeLoss",

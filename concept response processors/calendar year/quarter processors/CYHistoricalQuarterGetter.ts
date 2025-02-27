@@ -16,7 +16,10 @@ class CYHistoricalQuarterGetter {
             } catch(err){
                 break;
             }
+
         }
+
+        this.#validateHistoricalValues(historicalValues);
         return historicalValues;
     }
 
@@ -32,6 +35,12 @@ class CYHistoricalQuarterGetter {
 
         this.#validateQuarterData(quartersData);
         return quartersData;
+    }
+
+    static #validateHistoricalValues(historicalValues){
+        if (historicalValues.length == 0){
+            throw new Error('No historical values for time period found');
+        }
     }
 
     static #validateQuarterData(quartersData){

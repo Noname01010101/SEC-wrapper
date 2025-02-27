@@ -16,7 +16,7 @@ class ConceptResponseGetter {
                 return key;
             }
         }
-        throw new Error('concept not found in any key of general response. possible misspelling');
+        throw new Error(`concept not found in any key of general response. concept: ${concept}`);
     }
 }
 module.exports = ConceptResponseGetter;

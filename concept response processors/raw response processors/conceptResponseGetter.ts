@@ -12,6 +12,16 @@ class ConceptResponseGetter {
 
         throw new Error('Could not find the concept in the us:gaap response');
     }
+    
+    static getAllConceptsFromGeneralResponse(generalResponse){
+        let concepts = [];
+        for (const key in generalResponse.facts){
+            for (const concept in generalResponse.facts[key]){
+                concepts.push(concept);
+            }
+        }
+        return concepts;
+    }
 
     static #getConceptFactsTabName(generalResponse, concept){
         for (const key in generalResponse.facts){
@@ -20,7 +30,7 @@ class ConceptResponseGetter {
             }
         }
 
-        throw new Error('concept not found in any key of general response. possible misspelling')
+        throw new Error(`concept not found in any key of general response. concept: ${concept}`);
     }
 }
 
