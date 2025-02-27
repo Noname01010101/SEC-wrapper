@@ -15,7 +15,10 @@ import nestedObjectsTools = require('../json tools/nestedObjectsTools');
 
 class StatementMaker {
     static async #getGeneralResponse(symbol: string){
-        const cikCode = await CikCodeCoverter.getSymbolCikCodeWithoutCIKKeyword(symbol);
+        let cikCode = symbol;
+        if (!(/^\d+$/.test(symbol))){
+            cikCode = await CikCodeCoverter.getSymbolCikCodeWithoutCIKKeyword(symbol);
+        }
         const keyURL = URLConverter.getCompanyFactsUrl(cikCode);
         const res = await APIRateLimitedFetch(keyURL);
         this.#validateResponse(res);

@@ -15,6 +15,11 @@ class URLConverter {
         const url = `https://data.sec.gov/submissions/CIK${cikCode}.json`;
         return url;
     }
+
+    static getCompanyTickersURL(){
+        const url = "https://www.sec.gov/files/company_tickers.json";
+        return url;
+    }
 }
 
 module.exports = URLConverter;
