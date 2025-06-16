@@ -7,8 +7,18 @@ class TTMStatementMaker {
         concepts = nestedObjectsTools.getObjectWithoutSections(concepts);
         let ttm = {};
         for(const key in concepts){
-            let sum = this.#getSummedTTMConceptValues(companyFactsResponse, concepts[key]);
-            ttm[key] = sum;
+            for (let i = 0; i < concepts[key].length; i++){
+                try{
+                    let sum = this.#getSummedTTMConceptValues(companyFactsResponse, concepts[key][i]);
+                    ttm[key] = sum;
+                    break;
+                } catch (err){
+                    if(i != concepts[key].length - 1){
+                        continue;
+                    }
+                }
+                throw new Error(`could not find concept. key: ${key}`);
+            }
         }
         return ttm;
     }

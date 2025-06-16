@@ -30,9 +30,20 @@ class AnnualStatementMaker {
         concepts = nestedObjectsTools.getObjectWithoutSections(concepts);
         let annualStatement = {};
         for (const key in concepts) {
-            const conceptResponse = ConceptResponseGetter.getUsGaapConceptResponse(companyFactsResponse, concepts[key]);
-            const annualValue = CYAnnualGetter.getYearAnnualData(conceptResponse, year).value;
-            annualStatement[key] = annualValue;
+            for (let i = 0; i < concepts[key].length; i++) {
+                try {
+                    const conceptResponse = ConceptResponseGetter.getConceptResponse(companyFactsResponse, concepts[key][i]);
+                    const annualValue = CYAnnualGetter.getYearAnnualData(conceptResponse, year).value;
+                    annualStatement[key] = annualValue;
+                    break;
+                }
+                catch (err) {
+                    if (i != concepts[key].length - 1) {
+                        continue;
+                    }
+                }
+                throw new Error(`could not find concept. key: ${key}`);
+            }
         }
         return annualStatement;
     }

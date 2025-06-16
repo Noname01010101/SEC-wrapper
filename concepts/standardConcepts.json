@@ -1,95 +1,261 @@
 {
     "income": {
-        "revenue" : "RevenueFromContractWithCustomerExcludingAssessedTax",
-        "totalOperatingExpenses": "OperatingExpenses",
-        "operatingIncome": "OperatingIncomeLoss",
-        "netIncome": "NetIncomeLoss",
-        "epsBasic": "EarningsPerShareBasic",
-        "epsDiluted": "EarningsPerShareDiluted"
+        "revenue": [
+            "Revenues",
+            "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "SalesRevenueNet",
+            "OperatingRevenue",
+            "TotalRevenue"
+        ],
+        "totalOperatingExpenses": [
+            "OperatingExpenses",
+            "OperatingCostsAndExpenses",
+            "TotalOperatingExpenses",
+            "SellingGeneralAndAdministrativeExpense",
+            "ResearchAndDevelopmentExpense",
+            "CostAndExpenses",
+            "GeneralAndAdministrativeExpense",
+            "RestructuringCharges",
+            "ImpairmentOfAssetsAndGoodwill",
+            "DepreciationAndAmortization",
+            "TotalCostsAndExpenses",
+            "OperatingExpenseExcludingDepreciationAmortizationAndImpairment"
+        ],
+        "operatingIncome": [
+            "OperatingIncomeLoss",
+            "OperatingIncome",
+            "IncomeFromOperations"
+        ],
+        "netIncome": [
+            "NetIncomeLoss",
+            "NetIncome",
+            "ComprehensiveIncomeNetOfTax"
+        ],
+        "epsBasic": [
+            "EarningsPerShareBasic",
+            "BasicEarningsPerShare",
+            "EarningsPerShareBasicDiluted"
+        ],
+        "epsDiluted": [
+            "EarningsPerShareDiluted",
+            "DilutedEarningsPerShare"
+        ]
     },
-
     "balance": {
-        "assets":{
+        "assets": {
             "current": {
-                "cashAndCashEquivalents": "CashAndCashEquivalentsAtCarryingValue",
-                "accountsReceivable": "AccountsReceivableNetCurrent",
-                "otherReceivables": "NontradeReceivablesCurrent",
-                "inventories": "InventoryNet",
-                "otherCurrentAssets": "OtherAssetsCurrent",
-                "totalCurrentAssets": "AssetsCurrent"
+                "cashAndCashEquivalents": [
+                    "CashAndCashEquivalentsAtCarryingValue",
+                    "CashAndCashEquivalents"
+                ],
+                "accountsReceivable": [
+                    "AccountsReceivableNetCurrent",
+                    "AccountsReceivableNet"
+                ],
+                "otherReceivables": [
+                    "NontradeReceivablesCurrent",
+                    "OtherReceivablesCurrent",
+                    "NontradeReceivablesNoncurrent",
+                    "OtherReceivablesNoncurrent"
+                ],
+                "inventories": [
+                    "InventoryNet",
+                    "Inventory"
+                ],
+                "otherCurrentAssets": [
+                    "OtherAssetsCurrent",
+                    "OtherAssets"
+                ],
+                "totalCurrentAssets": [
+                    "AssetsCurrent",
+                    "TotalCurrentAssets"
+                ]
             },
             "nonCurrent": {
-                "marketableSecurities": "MarketableSecuritiesNoncurrent",
-                "propretyPlantAndEquipment": "PropertyPlantAndEquipmentNet",
-                "otherNonCurrentAssets": "OtherAssetsNoncurrent",
-                "totalNonCurrentAssets": "AssetsNoncurrent"
+                "marketableSecurities": [
+                    "MarketableSecuritiesNoncurrent",
+                    "MarketableSecurities"
+                ],
+                "propertyPlantAndEquipment": [
+                    "PropertyPlantAndEquipmentNet",
+                    "PropertyPlantAndEquipment"
+                ],
+                "otherNonCurrentAssets": [
+                    "OtherAssetsNoncurrent",
+                    "OtherAssets"
+                ],
+                "totalNonCurrentAssets": [
+                    "AssetsNoncurrent",
+                    "TotalNonCurrentAssets"
+                ]
             },
-
-            "totalAssets": "Assets"
+            "totalAssets": [
+                "Assets",
+                "TotalAssets"
+            ]
         },
-
         "liabilities": {
-            "current":{
-                "accountsPayable": "AccountsPayableCurrent",
-                "otherCurrentLiabilities": "OtherLiabilitiesCurrent",
-                "deffered revenue": "ContractWithCustomerLiabilityCurrent",
-                "commercialPaper": "CommercialPaper",
-                "termDebt": "LongTermDebtCurrent",
-                "totalCurrentLiabilities": "LiabilitiesCurrent"
+            "current": {
+                "accountsPayable": [
+                    "AccountsPayableCurrent",
+                    "AccountsPayable"
+                ],
+                "otherCurrentLiabilities": [
+                    "OtherLiabilitiesCurrent",
+                    "OtherCurrentLiabilities"
+                ],
+                "deferredRevenue": [
+                    "ContractWithCustomerLiabilityCurrent",
+                    "DeferredRevenueCurrent"
+                ],
+                "commercialPaper": [
+                    "CommercialPaper",
+                    "ShortTermBorrowings"
+                ],
+                "termDebt": [
+                    "LongTermDebtCurrent",
+                    "CurrentPortionOfLongTermDebt"
+                ],
+                "totalCurrentLiabilities": [
+                    "LiabilitiesCurrent",
+                    "TotalCurrentLiabilities"
+                ]
             },
-
             "nonCurrent": {
-                "termDebt": "LongTermDebtNoncurrent",
-                "otherNonCurrentLiabilities": "OtherLiabilitiesNoncurrent",
-                "totalNonCurrentLiabilities": "LiabilitiesNoncurrent"
+                "termDebt": [
+                    "LongTermDebtNoncurrent",
+                    "LongTermDebt"
+                ],
+                "otherNonCurrentLiabilities": [
+                    "OtherLiabilitiesNoncurrent",
+                    "NonCurrentLiabilitiesOther"
+                ],
+                "totalNonCurrentLiabilities": [
+                    "LiabilitiesNoncurrent",
+                    "TotalNonCurrentLiabilities"
+                ]
             },
-
-
-            "totalLiabilities": "Liabilities"
+            "totalLiabilities": [
+                "Liabilities",
+                "TotalLiabilities"
+            ]
         }
     },
-
-    "miscellanous": {
+    "miscellaneous": {
         "shareholderEquity": {
-                "totalShareholdersEquity": "StockholdersEquity",
-                "totalLiabilitiesAndShareholdersEquity": "LiabilitiesAndStockholdersEquity",
-                "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-            },
-            "outstandingShares": "CommonStockSharesOutstanding"
+            "totalShareholdersEquity": [
+                "StockholdersEquity",
+                "TotalStockholdersEquity"
+            ],
+            "totalLiabilitiesAndShareholdersEquity": [
+                "LiabilitiesAndStockholdersEquity",
+                "LiabilitiesAndEquity"
+            ],
+            "dividendPerShare": [
+                "CommonStockDividendsPerShareDeclared",
+                "DividendPerShare"
+            ]
+        },
+        "outstandingShares": [
+            "CommonStockSharesOutstanding",
+            "SharesOutstanding"
+        ]
     },
-
     "cashFlow": {
-        "operatingActivities":{
-            "depretiationAmortization": "DepreciationDepletionAndAmortization",
-            "accountsReceivable": "IncreaseDecreaseInAccountsReceivable",
-            "vendorNonTradeReceivables": "IncreaseDecreaseInOtherReceivables",
-            "invetories": "IncreaseDecreaseInInventories",
-            "otherAssets": "IncreaseDecreaseInOtherOperatingAssets",
-            "accountsPayable": "IncreaseDecreaseInAccountsPayable",
-            "otherLiabilities": "IncreaseDecreaseInOtherOperatingLiabilities",
-
-            "totalCashGeneratedByOperatingActivities": "NetCashProvidedByUsedInOperatingActivities"
+        "operatingActivities": {
+            "depreciationAmortization": [
+                "DepreciationDepletionAndAmortization",
+                "DepreciationAndAmortization",
+                "DepreciationAmortizationAndOther"
+            ],
+            "accountsReceivable": [
+                "IncreaseDecreaseInAccountsReceivable",
+                "ChangeInAccountsReceivable"
+            ],
+            "vendorNonTradeReceivables": [
+                "IncreaseDecreaseInOtherReceivables",
+                "NonTradeReceivablesChange"
+            ],
+            "inventories": [
+                "IncreaseDecreaseInInventories",
+                "ChangeInInventories"
+            ],
+            "otherAssets": [
+                "IncreaseDecreaseInOtherOperatingAssets",
+                "ChangeInOtherAssets"
+            ],
+            "accountsPayable": [
+                "IncreaseDecreaseInAccountsPayable",
+                "ChangeInAccountsPayable"
+            ],
+            "otherLiabilities": [
+                "IncreaseDecreaseInOtherOperatingLiabilities",
+                "ChangeInOtherLiabilities"
+            ],
+            "totalCashGeneratedByOperatingActivities": [
+                "NetCashProvidedByUsedInOperatingActivities",
+                "NetCashProvidedByOperatingActivities"
+            ]
         },
         "investingActivities": {
-            "purchaseOfMarketableSecurities": "PaymentsToAcquireAvailableForSaleSecuritiesDebt",
-            "proceedsFromMaturitiesOfMarketableSecurities": "ProceedsFromMaturitiesPrepaymentsAndCallsOfAvailableForSaleSecurities",
-            "proceedsFromSalesOfMarketableSecurities": "ProceedsFromSaleOfAvailableForSaleSecuritiesDebt",
-            "propertyPlantAndEquipment": "PaymentsToAcquirePropertyPlantAndEquipment",
-            "otherInvestingActivities": "PaymentsForProceedsFromOtherInvestingActivities",
-
-            "cashUsedInInvestingActivities": "NetCashProvidedByUsedInInvestingActivities"
+            "purchaseOfMarketableSecurities": [
+                "PaymentsToAcquireAvailableForSaleSecuritiesDebt",
+                "PaymentsForPurchaseOfMarketableSecurities"
+            ],
+            "proceedsFromMaturitiesOfMarketableSecurities": [
+                "ProceedsFromMaturitiesPrepaymentsAndCallsOfAvailableForSaleSecurities",
+                "ProceedsFromMaturitiesOfMarketableSecurities"
+            ],
+            "proceedsFromSalesOfMarketableSecurities": [
+                "ProceedsFromSaleOfAvailableForSaleSecuritiesDebt",
+                "ProceedsFromSaleOfMarketableSecurities"
+            ],
+            "propertyPlantAndEquipment": [
+                "PaymentsToAcquirePropertyPlantAndEquipment",
+                "CapitalExpenditures"
+            ],
+            "otherInvestingActivities": [
+                "PaymentsForProceedsFromOtherInvestingActivities",
+                "OtherInvestingActivities"
+            ],
+            "cashUsedInInvestingActivities": [
+                "NetCashProvidedByUsedInInvestingActivities",
+                "CashUsedInInvestingActivities"
+            ]
         },
-
         "financingActivities": {
-            "taxesForEquityAwards": "PaymentsRelatedToTaxWithholdingForShareBasedCompensation",
-            "dividendAndEquivalents": "PaymentsOfDividends",
-            "reporchaseOfStock": "PaymentsForRepurchaseOfCommonStock",
-            "cashReceivedFromLongTermLoans": "ProceedsFromIssuanceOfLongTermDebt",
-            "repaymentOfDebt": "RepaymentsOfLongTermDebt",
-            "netChangeInCommercialPaper": "ProceedsFromRepaymentsOfCommercialPaper",
-            "otherFinancingActivities": "PaymentsForProceedsFromOtherInvestingActivities",
-
-            "cashUsedInFinancingActivities": "NetCashProvidedByUsedInFinancingActivities"
+            "taxesForEquityAwards": [
+                "PaymentsRelatedToTaxWithholdingForShareBasedCompensation",
+                "ShareBasedCompensationTaxPayments"
+            ],
+            "dividendAndEquivalents": [
+                "PaymentsOfDividends",
+                "DividendPayments"
+            ],
+            "repurchaseOfStock": [
+                "PaymentsForRepurchaseOfCommonStock",
+                "StockRepurchasePayments"
+            ],
+            "cashReceivedFromLongTermLoans": [
+                "ProceedsFromIssuanceOfLongTermDebt",
+                "ProceedsFromLongTermDebt"
+            ],
+            "repaymentOfDebt": [
+                "RepaymentsOfLongTermDebt",
+                "DebtRepayments"
+            ],
+            "netChangeInCommercialPaper": [
+                "ProceedsFromRepaymentsOfCommercialPaper",
+                "NetChangeInCommercialPaper"
+            ],
+            "otherFinancingActivities": [
+                "PaymentsForProceedsFromOtherInvestingActivities",
+                "OtherFinancingActivities"
+            ],
+            "cashUsedInFinancingActivities": [
+                "NetCashProvidedByUsedInFinancingActivities",
+                "CashUsedInFinancingActivities"
+            ]
         }
     }
 }

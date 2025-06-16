@@ -25,7 +25,7 @@ describe('quarter statement maker historical quarters test', ()=> {
     });
 
     it('History of quarterly misc statements', ()=> {
-        const historyStatements = QuarterStatementMaker.getHistoricalQuarterStatements(companyFacts, stdConcepts.miscellanous, testCommonTools.getTwoYearsTimeOption());
+        const historyStatements = QuarterStatementMaker.getHistoricalQuarterStatements(companyFacts, stdConcepts.miscellaneous, testCommonTools.getTwoYearsTimeOption());
         for (const statement of historyStatements){
             expect(typeof statement.outstandingShares).toBe("number");
         }
@@ -48,7 +48,7 @@ describe('quarter statement maker specific quarter test', ()=> {
     });
 
     it('specific quarter misc statement', ()=> {
-        const statement = QuarterStatementMaker.getQuarterStatement(companyFacts, stdConcepts.miscellanous, 2024, 3);
+        const statement = QuarterStatementMaker.getQuarterStatement(companyFacts, stdConcepts.miscellaneous, 2024, 3);
         expect(typeof statement['outstandingShares']).toBe("number");
     });
 })

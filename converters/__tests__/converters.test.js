@@ -1,7 +1,6 @@
 import * as vitest from "vitest";
 const CikCodeConverter = require('../cikCodeConverter');
 const URLConverter = require('../urlConverter');
-const concepts = require('../../concepts/standardConcepts.json').income;
 
 vitest.describe('convertions test', () => {
     vitest.it('should return the actual cik code corresponding to the symbol', async () => {
@@ -10,7 +9,7 @@ vitest.describe('convertions test', () => {
     })
 
     vitest.it('should return a valid response from the generated url', async () => {
-        const conceptTest = concepts.revenue;
+        const conceptTest = "RevenueFromContractWithCustomerExcludingAssessedTax";
         const testCikCode = await CikCodeConverter.getSymbolCikCodeWithoutCIKKeyword("AAPL");
         const url = await URLConverter.getConceptURL(testCikCode, conceptTest);
         const response = await fetch(url);

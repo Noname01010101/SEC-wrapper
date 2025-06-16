@@ -13,7 +13,7 @@ function getSectionsOnlyObjectFromJson(jsonObj){
 function getObjectWithoutSections(obj){
     let result = {};
     for(const key in obj){
-        if (typeof obj[key] == "object"){
+        if (typeof obj[key] == "object" && !Array.isArray(obj[key])){
             const sectionRawValues = getObjectWithoutSections(obj[key]);
             // @ts-ignore
             for (const rawKey in sectionRawValues){

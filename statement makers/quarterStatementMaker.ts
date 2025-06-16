@@ -57,9 +57,19 @@ class QuarterStatementMaker{
         concepts = nestedObjectsTools.getObjectWithoutSections(concepts);
         let quarterStatement = {};
         for (const key in concepts){
-            const conceptResponse = ConceptResponseGetter.getUsGaapConceptResponse(companyFactsResponse, concepts[key]);
-            const annualValue = CYQuarterGetter.getSpecificQuarterData(conceptResponse, year, quarter);
-            quarterStatement[key] = annualValue.value;
+            for (let i = 0; i < concepts[key].length; i++){
+                try{
+                    const conceptResponse = ConceptResponseGetter.getConceptResponse(companyFactsResponse, concepts[key][i]);
+                    const annualValue = CYQuarterGetter.getSpecificQuarterData(conceptResponse, year, quarter);
+                    quarterStatement[key] = annualValue.value;
+                    break;
+                } catch(err){
+                    if(i != concepts[key].length - 1){
+                        continue;
+                    }
+                }
+                throw new Error(`could not find concept. key: ${key}`);
+            }
         }
         return quarterStatement;
     }

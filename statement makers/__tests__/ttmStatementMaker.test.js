@@ -21,7 +21,7 @@ describe('ttm statement maker test', ()=> {
     });
 
     it('ttm misc statement', ()=> {
-        const statement = ttmStatementMaker.getTTMStatement(companyFacts, stdConcepts.miscellanous)
+        const statement = ttmStatementMaker.getTTMStatement(companyFacts, stdConcepts.miscellaneous)
         expect(typeof statement['outstandingShares']).toBe("number");
     });
 })
